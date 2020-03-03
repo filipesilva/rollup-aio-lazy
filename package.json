@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "postinstall": "yarn ngcc --first-only --properties es2015",
+    "postinstall": "yarn ngcc --properties es2015 --properties esm2015",
     "lazy": "rm -rf dist && rollup -c rollup.config.js",
     "nolazy": "rm -rf dist-nolazy && rollup -c rollup.config.js --dir dist-nolazy --input ./src/main-nolazy.js",
     "test": "yarn lazy && yarn nolazy && ls -la dist*/*.js"

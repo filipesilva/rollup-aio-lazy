@@ -9,7 +9,15 @@ export default {
     sourcemap: true,
   },
   plugins: [
-    nodeResolve({ mainFields: ['es2015', 'browser', 'module', 'main'] }),
+    nodeResolve({
+      mainFields: [
+        'esm2015',
+        'es2015',
+        'browser',
+        'module',
+        'main',
+      ]
+    }),
     buildOptimizer({
       sideEffectFreeModules: [
         `node_modules/@angular/animations/`,
