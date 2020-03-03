@@ -1,35 +1,14 @@
 import nodeResolve from '@rollup/plugin-node-resolve';
-import includePaths from 'rollup-plugin-includepaths';
-import { terser } from 'rollup-plugin-terser';
 import buildOptimizer from '@angular-devkit/build-optimizer/src/build-optimizer/rollup-plugin.js';
-import { GLOBAL_DEFS_FOR_TERSER, GLOBAL_DEFS_FOR_TERSER_WITH_AOT } from '@angular/compiler-cli';
-
-const cliUglifyConfig = {
-  safari10: true,
-  output: {
-    ascii_only: true,
-    comments: false,
-    webkit: true,
-  },
-  compress: {
-    pure_getters: true,
-    passes: 3,
-    global_defs: {
-      ...GLOBAL_DEFS_FOR_TERSER,
-      ...GLOBAL_DEFS_FOR_TERSER_WITH_AOT,
-    },
-  },
-}
 
 export default {
-  input: './src/main-rollup.js',
+  input: './src/main.js',
   output: {
     dir: './dist/',
     format: 'esm',
     sourcemap: true,
   },
   plugins: [
-    includePaths({ paths: ['./src'] }),
     nodeResolve({ mainFields: ['es2015', 'browser', 'module', 'main'] }),
     buildOptimizer({
       sideEffectFreeModules: [
@@ -47,6 +26,5 @@ export default {
         `node_modules/rxjs/`,
       ]
     }),
-    // terser(cliUglifyConfig),
   ]
 };
